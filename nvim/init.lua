@@ -274,12 +274,53 @@ require('lazy').setup({
         require("copilot").setup({})
       end,
   },
-    {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-          require("copilot_cmp").setup()
-      end,
+  {
+    "zbirenbaum/copilot-cmp",
+    config = function()
+      require("copilot_cmp").setup()
+    end,
   },
+  {
+    "kdheepak/lazygit.nvim",
+    cmd = {
+      "LazyGit",
+      "LazyGitConfig",
+      "LazyGitCurrentFile",
+      "LazyGitFilter",
+      "LazyGitFilterCurrentFile",
+    },
+    -- optional for floating window border decoration
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    -- setting the keybinding for LazyGit with 'keys' is recommended in
+    -- order to load the plugin when the command is run for the first time
+    keys = {
+      { "<leader>lg", "<cmd>LazyGit<cr>", desc = "LazyGit" }
+    }
+  },
+  {
+    "nvim-tree/nvim-tree.lua",
+    version = "*",
+    lazy = false,
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end,
+  },
+  {
+    'nosduco/remote-sshfs.nvim',
+    --dependencies = {
+      --'plenary',
+      --'telescope'
+    --},
+    config = function()
+    end
+  },
+
+
 }, {})
 
 -- [[ Setting options ]]
@@ -390,7 +431,7 @@ local function find_git_root()
   return git_root
 end
 
--- Custom live_grep function to search in git root
+-- Custom live_grep function to search in git root -- REQUIRES ripgrep to work 
 local function live_grep_git_root()
   local git_root = find_git_root()
   if git_root then
@@ -562,6 +603,19 @@ require('which-key').register({
   ['<leader>h'] = { 'Git [H]unk' },
 }, { mode = 'v' })
 
+-------------- Quickfix
+local opts = { noremap=true, silent=true }
+
+local function quickfix()
+    vim.lsp.buf.code_action({
+        filter = function(a) return a.isPreferred end,
+        apply = true
+    })
+end
+
+vim.keymap.set('n', '<leader>qf', quickfix, opts)
+
+--
 -- mason-lspconfig requires that these setup functions are called in this order
 -- before setting up the servers.
 require('mason').setup()
@@ -677,6 +731,62 @@ cmp.setup {
 vim.wo.relativenumber = true
 vim.wo.number = true
 vim.o.statuscolumn = "%s %l %r"
+-- scolloff -- minimal number of screen lines to keep above and below the cursor
+vim.opt.scrolloff = 7
+vim.opt.cursorline = true
+
+-- Nvim Tree Setup
+-- disable netrw at the very start of your init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+-- optionally enable 24-bit colour
+vim.opt.termguicolors = true
+
+-- empty setup using defaults
+require("nvim-tree").setup()
+
+-- OR setup with some options
+require("nvim-tree").setup({
+  sort = {
+    sorter = "case_sensitive",
+  },
+  view = {
+    width = 30,
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+
+--local api = require "nvim-tree.api"
+vim.keymap.set('n', '<leader>ft',':NvimTreeToggle<cr>', opts)
+
+--ssh connection
+require('remote-sshfs').setup({
+  connections = {
+    ssh_configs = { -- which ssh configs to parse for hosts list
+    vim.fn.expand "$HOME" .. "/.ssh/config",
+    vim.fn.expand "$HOME" .. "/.ssh/configs/uni",
+
+    --"/etc/ssh/ssh_config",
+    -- "/path/to/custom/ssh_config"
+  },
+}
+      })
+require('telescope').load_extension 'remote-sshfs' --not working
+
+-- copilot toggle
+vim.keymap.set('n', '<leader>cb', '<cmd>Copilot attach<cr>', opts)
+vim.keymap.set('n', '<leader>ce', '<cmd>Copilot detach<cr>', opts)
+-- todo make tab and enter not codecomplete
+
+
+
+
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

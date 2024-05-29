@@ -1,0 +1,63 @@
+icons:
+  html: "" # nf-seti-html
+  css: "" # nf-seti-css
+  sass: "" # nf-seti-sass
+  less: "" # nf-seti-less
+  javascript: "󰌞" # nf-md-language_javascript
+  typescript: "󰛦" # nf-md-language_typescript
+  vue: "" # nf-seti-vue
+  react: "" # nf-seti-react
+  python: "" # nf-seti-python
+specs:
+  - pattern: \.x?html?$
+    icon: html
+    style: rgb(255,212,59)
+  - pattern: \.s[ac]ss$
+    icon: sass
+    style: rgb(255,212,59)
+  - pattern: \.less$
+    icon: less
+    style: rgb(255,212,59)
+  - pattern: \.css$
+    icon: css
+    style: rgb(79,192,141)
+    collapse:
+      ext: scss
+  - pattern: \.ts$
+    icon: typescript
+    style: rgb(49,120,198)
+  - pattern: \.(c|m)?js$
+    icon: javascript
+    style: rgb(247,223,30)
+    collapse:
+      ext: ts
+  - pattern: \.vue$
+    icon: vue
+    style: rgb(79,192,141)
+  - pattern: \.(j|t)sx$
+    icon: react
+    style: rgb(97,218,251)
+  - pattern: ^package-lock\.json$
+    icon: package
+  - pattern: ^(pnpm-lock.yaml|package-lock.json)$
+    icon: lock
+    importance: -1
+    collapse:
+      name: package.json
+  - pattern: \.py$
+    icon: python
+    style: rgb(255,212,59)
+  - pattern: requirements.*\.txt$
+    icon: lock
+  - pattern: ^(pyproject\.toml|Pipfile)$
+    icon: package
+  - pattern: ^poetry\.lock$
+    icon: lock
+    importance: -1
+    collapse:
+      name: pyproject.toml
+  - pattern: ^Pipfile.lock$
+    icon: lock
+    importance: -1
+    collapse:
+      name: Pipfile
