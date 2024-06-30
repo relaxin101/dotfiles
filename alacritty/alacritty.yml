@@ -49,6 +49,7 @@ window:
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
 
+  
   # Window decorations
   #
   # Values for `decorations`:
@@ -70,6 +71,7 @@ window:
   # Values for `startup_mode` (macOS only):
   #   - SimpleFullscreen
   #startup_mode: Windowed
+  opacity: 0.9
 
   # Window title
   title: Alacritty
@@ -223,12 +225,13 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: true
 
+
 # Colors (Tomorrow Night Bright)
 colors:
   # Default colors
   primary:
-    background: '0x002b36'
-    foreground: '0x93a1a1'
+    #background: '0x002b36'
+    #foreground: '0x93a1a1'
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
