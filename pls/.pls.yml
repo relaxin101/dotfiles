@@ -8,6 +8,9 @@ icons:
   vue: "" # nf-seti-vue
   react: "" # nf-seti-react
   python: "" # nf-seti-python
+  csv: "󰓰"
+  tsv: "󱂔"
+
 specs:
   - pattern: \.x?html?$
     icon: html
@@ -61,3 +64,9 @@ specs:
     importance: -1
     collapse:
       name: Pipfile
+  - pattern: \.csv$
+    style: rgb(237,142,207)
+    icon: csv
+  - pattern: \.tsv$
+    style: rgb(201,97,242)
+    icon: tsv

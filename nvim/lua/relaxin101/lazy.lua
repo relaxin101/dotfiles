@@ -287,6 +287,26 @@ require('lazy').setup({
     keys = { -- load the plugin only when using it's keybinding:
       { "<leader>u", "<cmd>lua require('undotree').toggle()<cr>" },
     },
+  },
+  {
+    'MeanderingProgrammer/render-markdown.nvim',
+    opts = {},
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+  },
+  {
+    'meatballs/notebook.nvim',
+    config = function ()
+      require('notebook').setup()
+    end
+  },
+  {
+    'ggandor/leap.nvim',
+    dependencies = {
+      'tpope/vim-repeat'
+    },
+    config = function ()
+      require('leap').create_default_mappings()
+    end
   }
 
 
