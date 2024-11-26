@@ -1,7 +1,7 @@
 #####################################
 # zellij setup 
 #####################################
-export TERM=alacritty
+export TERM=wezterm
 export ZELLIJ_AUTO_EXIT=true
 export ZELLIJ_AUTO_ATTACH=false
 eval "$(zellij setup --generate-auto-start zsh)"
@@ -131,8 +131,10 @@ source $ZSH/oh-my-zsh.sh
 # p10k theme & oh-my-zsh plugins
 #####################################
 
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # Enable vi mode
@@ -249,5 +251,4 @@ unset __conda_setup
 #####################################
 # End Conda/python stuff
 #####################################
-
-export PATH="/opt/homebrew/opt/binutils/bin:$PATH"
+neofetch && fortune -s
