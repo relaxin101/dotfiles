@@ -61,8 +61,8 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
+--[[ Highlight on yank ]]
+--See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
@@ -86,12 +86,6 @@ vim.opt.cursorline = true
 -- optionally enable 24-bit colour
 vim.opt.termguicolors = true
 
--- copilot toggle
-vim.keymap.set('n', '<leader>cb', '<cmd>Copilot attach<cr>')
-vim.keymap.set('n', '<leader>ce', '<cmd>Copilot detach<cr>')
--- todo make tab and enter not codecomplete
-
-
 
 vim.keymap.set("v","J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v","K", ":m '<-2<CR>gv=gv")
@@ -107,4 +101,9 @@ vim.keymap.set("n","<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- add chmod +x to current file
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+--vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+vim.keymap.set("n", "<space>x", ":. lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
+
