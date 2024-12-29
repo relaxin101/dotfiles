@@ -87,12 +87,12 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 
 
-vim.keymap.set("v","J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v","K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set("n","J", "mzJ`z")
-vim.keymap.set("n","<C-d>", "<C-d>zz")
-vim.keymap.set("n","<C-u>", "<C-u>zz")
+vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 
 -- todo: add explanation to vim tipps
@@ -105,9 +105,33 @@ vim.keymap.set("n","<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 vim.keymap.set("n", "<space>x", "<cmd>. lua<CR>")
-vim.keymap.set("v", "<space>x", "<cmd>lua<CR>")
+vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 -- Qflist :h quickfix  :h setqflist
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 
+
+-- Terminal stuff
+local job_id = 0
+
+vim.keymap.set("n", "<space>nt", function()
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 5)
+
+  job_id = vim.bo.channel
+end)
+
+vim.keymap.set("n", "<space>test", function()
+  vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
+end)
+
+vim.api.nvim_create_autocmd('TermOpen', {
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end
+})

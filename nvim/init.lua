@@ -1,4 +1,4 @@
-require"relaxin101"
+require "relaxin101"
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
