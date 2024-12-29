@@ -4,18 +4,19 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      "folke/lazydev.nvim",
-      ft = "lua", -- only load on lua files
-      opts = {
-        library = {
-          -- See the configuration section for more details
-          -- Load luvit types when the `vim.uv` word is found
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      'saghen/blink.cmp',
+      {
+        "folke/lazydev.nvim",
+        opts = {
+          library = {
+            { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+          },
         },
       },
     },
     config = function()
-      require("lspconfig").lua_ls.setup {}
+      local capabilities = require('blink.cmp').get_lsp_capabilities()
+      require("lspconfig").lua_ls.setup { capabilities = capabilities }
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -30,12 +31,6 @@ return {
               end
             })
           end
-          -- Unset 'formatexpr'
-          vim.bo[args.buf].formatexpr = nil
-          -- Unset 'omnifunc'
-          vim.bo[args.buf].omnifunc = nil
-          -- Unmap K
-          vim.keymap.del('n', 'K', { buffer = args.buf })
         end,
       })
     end

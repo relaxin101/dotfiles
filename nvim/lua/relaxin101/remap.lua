@@ -1,3 +1,4 @@
+local keymap = vim.keymap.set
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
@@ -127,6 +128,14 @@ end)
 vim.keymap.set("n", "<space>test", function()
   vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
 end)
+
+local t_opts = { silent = true }
+
+keymap('t', '<esc>', '<C-\\><C-N>', t_opts)
+keymap('t', '<C-Left>', '<C-\\><C-N><C-w>h', t_opts)
+keymap('t', '<C-Down>', '<C-\\><C-N><C-w>j', t_opts)
+keymap('t', '<C-Up>', '<C-\\><C-N><C-w>k', t_opts)
+keymap('t', '<C-Right>', '<C-\\><C-N><C-w>l', t_opts)
 
 vim.api.nvim_create_autocmd('TermOpen', {
   group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),

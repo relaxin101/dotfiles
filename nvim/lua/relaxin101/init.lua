@@ -1,5 +1,5 @@
 --nvim keymaps
-require"relaxin101.remap"
+require "relaxin101.remap"
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -23,13 +23,10 @@ vim.opt.rtp:prepend(lazypath)
 --  You can also configure plugins after the setup call,
 --    as they will be available in your neovim runtime.
 require('lazy').setup({
-  spec={
-    {import="relaxin101.plugins"}
+  spec = {
+    { import = "relaxin101.plugins" }
   }
 }, {})
 
 --- [[Testing shenanigans]]
 ---
-
-
-    
