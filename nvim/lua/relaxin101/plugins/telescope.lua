@@ -47,6 +47,9 @@ return {
         })
         require('relaxin101.telescope.multigrep').setup(opts)
       end)
+      vim.keymap.set("n", "<space>sg", function()
+        require('relaxin101.telescope.multigrep').setup()
+      end)
     end,
   },
 }
