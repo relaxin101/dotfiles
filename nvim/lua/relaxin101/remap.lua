@@ -131,7 +131,7 @@ end)
 
 local t_opts = { silent = true }
 
-keymap('t', '<esc>', '<C-\\><C-N>', t_opts)
+keymap('t', '<C-K>', '<C-\\><C-N>', t_opts)
 keymap('t', '<C-Left>', '<C-\\><C-N><C-w>h', t_opts)
 keymap('t', '<C-Down>', '<C-\\><C-N><C-w>j', t_opts)
 keymap('t', '<C-Up>', '<C-\\><C-N><C-w>k', t_opts)
