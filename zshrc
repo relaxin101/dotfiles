@@ -223,8 +223,13 @@ alias vim=nvim
 #####################################
 # gzip aliases
 #####################################
-alias compress= tar -cvzf
-alias extract= tar -xzvf
+alias compress="tar -cvzf"
+alias extract="tar -xzvf"
+
+#####################################
+#zenith  alias -> smarter htop
+#####################################
+alias htop="zenith"
 
 
 
@@ -252,3 +257,4 @@ unset __conda_setup
 # End Conda/python stuff
 #####################################
 neofetch && fortune -s
+source <(kubectl completion zsh)
