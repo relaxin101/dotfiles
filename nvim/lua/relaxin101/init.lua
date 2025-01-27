@@ -30,3 +30,11 @@ require('lazy').setup({
 
 --- [[Testing shenanigans]]
 ---
+vim.filetype.add({
+  -- match based on file extension
+  extension = {
+    jcl = 'jcl'
+  },
+  -- match based on filename
+  filename = {}
+})

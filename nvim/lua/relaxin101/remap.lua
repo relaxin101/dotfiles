@@ -125,8 +125,9 @@ vim.keymap.set("n", "<space>nt", function()
   job_id = vim.bo.channel
 end)
 
-vim.keymap.set("n", "<space>test", function()
-  vim.fn.chansend(job_id, { "echo 'hi'\r\n" })
+COMMAND = 'echo hi'
+vim.keymap.set("n", "<space>run", function()
+  vim.fn.chansend(job_id, { COMMAND.."\r\n" })
 end)
 
 local t_opts = { silent = true }

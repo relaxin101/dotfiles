@@ -35,6 +35,7 @@ return {
       vim.keymap.set("n", "<space>sf", builtin.find_files)
       vim.keymap.set("n", "<space>sh", builtin.help_tags)
       vim.keymap.set("n", "<space>so", builtin.builtin)
+      vim.keymap.set("n", "<space><space>", builtin.buffers)
       vim.keymap.set("n", "<space>sc", function()
         local opts = require('telescope.themes').get_ivy({
           cwd = vim.fn.stdpath('config')
