@@ -31,10 +31,17 @@ return {
       }
       require("telescope").load_extension("fzf")
 
+      require("telescope.previewers").new({
+        get_command = function(entry, _)
+          return { 'viu', entry.path }
+        end
+      })
+
       local builtin = require("telescope.builtin")
       vim.keymap.set("n", "<space>sf", builtin.find_files)
       vim.keymap.set("n", "<space>sh", builtin.help_tags)
       vim.keymap.set("n", "<space>so", builtin.builtin)
+      vim.keymap.set("n", "<space>qf", builtin.quickfix)
       vim.keymap.set("n", "<space><space>", builtin.buffers)
       vim.keymap.set("n", "<space>sc", function()
         local opts = require('telescope.themes').get_ivy({
