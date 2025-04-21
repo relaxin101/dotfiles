@@ -232,7 +232,6 @@ alias extract="tar -xzvf"
 alias htop="zenith"
 
 
-
 #####################################
 #sqlite3 override macos builtin
 #####################################
@@ -243,4 +242,9 @@ alias htop="zenith"
 # kubectl completion for zsh
 #####################################
 source <(kubectl completion zsh)
+
+#####################################
+# pyenv, conda light
+#####################################
+eval "$(pyenv init --path)"
 fastfetch && fortune -s
