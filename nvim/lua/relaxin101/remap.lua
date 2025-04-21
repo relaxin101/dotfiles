@@ -95,18 +95,21 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
+-- automatically jump to right window after v-split
+vim.keymap.set('n', '<C-w>v', '<C-W>v<C-w>l')
 
--- todo: add explanation to vim tipps
+-- toggle color scheme
+vim.keymap.set("n", "<M-t>", ':exec &bg=="light"? "set bg=dark" : "set bg=light"<CR>', { noremap = true, silent = true })
+
+
+
+-- todo: add explanation to vim tips
 --
 -- replace word under cursor
 --vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- add chmod +x to current file
 --vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
-vim.keymap.set("n", "<space>x", "<cmd>. lua<CR>")
-vim.keymap.set("v", "<space>x", ":lua<CR>")
 
 -- Qflist :h quickfix  :h setqflist
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
@@ -127,7 +130,7 @@ end)
 
 COMMAND = 'echo hi'
 vim.keymap.set("n", "<space>run", function()
-  vim.fn.chansend(job_id, { COMMAND.."\r\n" })
+  vim.fn.chansend(job_id, { COMMAND .. "\r\n" })
 end)
 
 local t_opts = { silent = true }
