@@ -1,9 +1,17 @@
 return {
   {
+    'saghen/blink.compat',
+    version = '*',
+    opts = { impersonate_nvim_cmp = false },
+  },
+  {
 
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = {
+      { 'rafamadriz/friendly-snippets' },
+      { "micangl/cmp-vimtex" },
+    },
 
     -- use a release tag to download pre-built binaries
     version = '*',
@@ -22,6 +30,19 @@ return {
       keymap = { preset = 'default' },
       signature = {
         enabled = true
+      },
+      sources = {
+        default = { 'lsp', 'path', 'cmdline', 'snippets', 'buffer', 'vimtex' },
+        providers = {
+          snippets = {
+            score_offset = 1,
+          },
+          vimtex = {
+            name = 'vimtex',
+            module = 'blink.compat.source',
+            score_offset = 3,
+          },
+        },
       },
 
       appearance = {
