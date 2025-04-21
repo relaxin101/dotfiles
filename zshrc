@@ -1,10 +1,10 @@
 #####################################
 # zellij setup 
 #####################################
-export TERM=wezterm
-export ZELLIJ_AUTO_EXIT=true
-export ZELLIJ_AUTO_ATTACH=false
-eval "$(zellij setup --generate-auto-start zsh)"
+export TERM=ghostty
+#export ZELLIJ_AUTO_EXIT=true
+#export ZELLIJ_AUTO_ATTACH=false
+#eval "$(zellij setup --generate-auto-start zsh)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
