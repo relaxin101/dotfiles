@@ -234,9 +234,13 @@ alias htop="zenith"
 
 
 #####################################
+#sqlite3 override macos builtin
 #####################################
+#alias sqlite3="/opt/homebrew/opt/sqlite3/bin/sqlite3"
+
 
 #####################################
+# kubectl completion for zsh
 #####################################
-neofetch && fortune -s
 source <(kubectl completion zsh)
+fastfetch && fortune -s
