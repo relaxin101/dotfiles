@@ -1,16 +1,20 @@
 M = {
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    "catppuccin/nvim",
+    name = "catppuccin",
     priority = 1000,
     config = function()
-      require "onedark".setup({
-        transparent = true
-      })
-      vim.cmd.colorscheme 'onedark'
-    end,
+      require "catppuccin".setup {
+        background = { -- :h background
+          light = "latte",
+          dark = "mocha",
+        },
+        transparent_background = true
+      }
+      vim.cmd.colorscheme "catppuccin"
+    end
   },
-  {'numToStr/Comment.nvim', opts = {}},
+  { 'numToStr/Comment.nvim', opts = {} },
   {
     "kdheepak/lazygit.nvim",
     cmd = {
@@ -35,14 +39,8 @@ M = {
     dependencies = {
       'tpope/vim-repeat'
     },
-    config = function ()
+    config = function()
       require('leap').create_default_mappings()
-    end
-  },
-  {
-    'meatballs/notebook.nvim',
-    config = function ()
-      require('notebook').setup()
     end
   },
 }
